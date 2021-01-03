@@ -1,0 +1,55 @@
+<html>
+	<title>Codenames</title>
+	<head>
+		<h1> Codenames </h1>
+		<link rel="stylesheet" href="Codenames.css">
+	</head>
+	<body>
+		<div id="startPage" style="text-align:center;">
+			<button onClick="randomStart()">New Game</button>
+			<button onClick="seedStart()">Enter game code</button>
+		</div>
+		<div id="gamePage" style="display:none;">
+			<table id="gameBoard">
+				<tr>
+					<td><button class="tableButton" onClick="takeTurn(1)" id="1">01</button></td>
+					<td><button class="tableButton" onClick="takeTurn(2)" id="2">02</button></td>
+					<td><button class="tableButton" onClick="takeTurn(3)" id="3">03</button></td>
+					<td><button class="tableButton" onClick="takeTurn(4)" id="4">04</button></td>
+					<td><button class="tableButton" onClick="takeTurn(5)" id="5">05</button></td>
+				</tr>
+				<tr>
+					<td><button class="tableButton" onClick="takeTurn(6)" id="6">06</button></td>
+					<td><button class="tableButton" onClick="takeTurn(7)" id="7">07</button></td>
+					<td><button class="tableButton" onClick="takeTurn(8)" id="8">08</button></td>
+					<td><button class="tableButton" onClick="takeTurn(9)" id="9">09</button></td>
+					<td><button class="tableButton" onClick="takeTurn(10)" id="10">10</button></td>
+				</tr>
+				<tr>
+					<td><button class="tableButton" onClick="takeTurn(11)" id="11">11</button></td>
+					<td><button class="tableButton" onClick="takeTurn(12)" id="12">12</button></td>
+					<td><button class="tableButton" onClick="takeTurn(13)" id="13">13</button></td>
+					<td><button class="tableButton" onClick="takeTurn(14)" id="14">14</button></td>
+					<td><button class="tableButton" onClick="takeTurn(15)" id="15">15</button></td>
+				</tr><tr>
+					<td><button class="tableButton" onClick="takeTurn(16)" id="16">16</button></td>
+					<td><button class="tableButton" onClick="takeTurn(17)" id="17">17</button></td>
+					<td><button class="tableButton" onClick="takeTurn(18)" id="18">18</button></td>
+					<td><button class="tableButton" onClick="takeTurn(19)" id="19">19</button></td>
+					<td><button class="tableButton" onClick="takeTurn(20)" id="20">20</button></td>
+				</tr><tr>
+					<td><button class="tableButton" onClick="takeTurn(21)" id="21">21</button></td>
+					<td><button class="tableButton" onClick="takeTurn(22)" id="22">22</button></td>
+					<td><button class="tableButton" onClick="takeTurn(23)" id="23">23</button></td>
+					<td><button class="tableButton" onClick="takeTurn(24)" id="24">24</button></td>
+					<td><button class="tableButton" onClick="takeTurn(25)" id="25">25</button></td>
+				</tr>
+				<button onClick="showColor()" style="position:fixed; left:46%;">Show Colors</button>
+				<br>
+				<p style="text-align:center; font-size:16pt;" id="currentTurn"></p>
+		</div>
+		<footer><button onClick="getCode()">Get game code</button></footer>
+		<script src="wordList.js"></script>
+		<script src="Codenames.js"></script>
+	</body>
+</html>

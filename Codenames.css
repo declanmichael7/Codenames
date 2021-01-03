@@ -1,0 +1,26 @@
+h1{
+	text-align: center;
+}
+body{
+	background-color:#b4b4b4;
+}
+table{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+td{
+	padding: 5px;
+}
+.tableButton{
+	font-size:14pt;
+	width: 200px;
+	height: 50px;
+}
+footer{
+	font-size:14pt;
+	position: absolute;
+	bottom: 10px;
+	display: flex;
+	left:46%;
+}
