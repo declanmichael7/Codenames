@@ -4,7 +4,7 @@ var neutralWords = [];
 var deathWord = -1;
 var shownWords = [];
 var i=1;
-var currentList = defaultList;
+var currentList;
 var gameCode="";
 var align;
 var word;
@@ -13,6 +13,12 @@ var colorShown = false;
 var words = [];
 var over = false;
 function randomStart(){
+	if(document.getElementById("list").value == "Classic"){
+		currentList = defaultList;
+	}
+	else if(document.getElementById("list").value == "Harry Potter"){
+		currentList = harryPotter;
+	}
 	document.getElementById("startPage").style.display = "none";
 	document.getElementById("gamePage").style.display = "initial";
 	turnColor = Math.floor(Math.random() * 2);
@@ -97,30 +103,44 @@ function getWord(){
 	}
 }
 function seedStart(){
-	currentList=defaultList;
 	gameCode = prompt("Enter the game code");
 	var code = gameCode.split(" ");
 	document.getElementById("startPage").style.display = "none";
 	document.getElementById("gamePage").style.display = "initial";
 	turnColor = code[0];
-	i=1;
-	while(i<=25){
+	if(code[1] == 0){
+		currentList = defaultList;
+	}
+	else if(code[1] == 1){
+		currentList = harryPotter;
+	}
+	if(turnColor == 0){
+		document.getElementById("currentTurn").innerHTML = "Current turn: Red";
+		document.getElementById("currentTurn").style.color = "red";
+	}
+	else{
+		document.getElementById("currentTurn").innerHTML = "Current turn: Blue";
+		document.getElementById("currentTurn").style.color = "dodgerblue";
+	}
+	i=2;
+	while(i<=26){
 		if(code[i].charAt(0)==0){
-			redWords.push(i);
-			document.getElementById(i).innerHTML = currentList[parseInt(code[i].substr(1),16)];
+			redWords.push(i-1);
+			document.getElementById(i-1).innerHTML = currentList[parseInt(code[i].substr(1),16)];
 		}
 		else if(code[i].charAt(0)==1){
-			blueWords.push(i);
-			document.getElementById(i).innerHTML = currentList[parseInt(code[i].substr(1),16)];
+			blueWords.push(i-1);
+			document.getElementById(i-1).innerHTML = currentList[parseInt(code[i].substr(1),16)];
 		}
 		else if(code[i].charAt(0)==2){
-			neutralWords.push(i);
-			document.getElementById(i).innerHTML = currentList[parseInt(code[i].substr(1),16)];
+			neutralWords.push(i-1);
+			document.getElementById(i-1).innerHTML = currentList[parseInt(code[i].substr(1),16)];
 		}
 		else{
-			deathWord = i;
-			document.getElementById(i).innerHTML = currentList[parseInt(code[i].substr(1),16)];
+			deathWord = i-1;
+			document.getElementById(i-1).innerHTML = currentList[parseInt(code[i].substr(1),16)];
 		}
+		
 		i++;
 	}
 }
@@ -174,6 +194,13 @@ function takeTurn(b){
 	}
 }
 function getCode(){
+	gameCode = turnColor + "";
+	if(document.getElementById("list").value == "Classic"){
+		gameCode += " " + "0";
+	}
+	else if(document.getElementById("list").value == "Harry Potter"){
+		gameCode += " " + "1";
+	}
 	i=1;
 	while(i<=25){
 		if(deathWord == i){
