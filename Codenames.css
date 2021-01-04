@@ -8,19 +8,20 @@ table{
 	display:flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 50px;
 }
 td{
 	padding: 5px;
 }
 .tableButton{
-	font-size:14pt;
 	width: 200px;
 	height: 50px;
 }
 footer{
-	font-size:14pt;
 	position: absolute;
 	bottom: 10px;
-	display: flex;
 	left:46%;
+}
+button{
+	font-size:14pt;
 }

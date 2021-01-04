@@ -11,6 +11,7 @@ var word;
 var turnColor;
 var colorShown = false;
 var words = [];
+var over = false;
 function randomStart(){
 	document.getElementById("startPage").style.display = "none";
 	document.getElementById("gamePage").style.display = "initial";
@@ -28,7 +29,7 @@ function randomStart(){
 	}
 	else{
 		document.getElementById("currentTurn").innerHTML = "Current turn: Blue";
-		document.getElementById("currentTurn").style.color = "blue";
+		document.getElementById("currentTurn").style.color = "dodgerblue";
 	}
 }
 function getAlign(){
@@ -123,6 +124,55 @@ function seedStart(){
 		i++;
 	}
 }
+function takeTurn(b){
+	if(!over){
+		if(deathWord == b){
+			if(turnColor==0){
+				gameOver(1);
+			}
+			else{
+				gameOver(0);
+			}
+		}
+		else if(shownWords.includes(b)){
+			alert("That word has already been selected.Try Again");
+		}
+		else{
+			if(redWords.includes(b)){
+				shownWords.push(b);
+				redWords.splice(redWords.indexOf(b), 1);
+				checkWin();
+				document.getElementById(b).style.backgroundColor = "red";
+				document.getElementById(b).style.color = "white";
+				document.getElementById(b).style.borderStyle = "solid";
+				if(turnColor == 1){
+					changeTurn();
+				}
+			}
+			else if(blueWords.includes(b)){
+				shownWords.push(b);
+				blueWords.splice(blueWords.indexOf(b), 1);
+				checkWin();
+				document.getElementById(b).style.backgroundColor = "dodgerblue";
+				document.getElementById(b).style.color = "white";
+				document.getElementById(b).style.borderStyle = "solid";
+				if(turnColor == 0){
+					changeTurn();
+				}
+			}
+			else if(neutralWords.includes(b)){
+				shownWords.push(b);
+				neutralWords.splice(neutralWords.indexOf(b), 1);
+				document.getElementById(b).style.backgroundColor = "tan";
+				document.getElementById(b).style.color = "white";
+				document.getElementById(b).style.borderStyle = "solid";
+				changeTurn();
+			}
+		document.getElementById(b).style.fontWeight = "bold";
+		document.getElementById(b).style.fontSize = "15pt";
+		}
+	}
+}
 function getCode(){
 	i=1;
 	while(i<=25){
@@ -149,11 +199,41 @@ function getCode(){
 			console.log(gameCode);
 		});
 }
+function checkWin(){
+	if(redWords.length==0){
+		gameOver(0);
+	}
+	else if(blueWords.length==0){
+		gameOver(1);
+	}
+}
+function gameOver(winner){
+	if(winner == 0){
+		alert("Red Wins!");
+	}
+	else{
+		alert("Blue Wins");
+	}
+	over = true;
+	shownWords = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+	showColor();
+}
 function showColor(){
 	if(colorShown){
 		i=1;
 		while(i<=25){
 			if(shownWords.includes(i)){
+				/*if(document.getElementById(i).style.backgroundColor == 'lightcoral'){
+					console.log("testRed");
+					document.getElementById(i).style.backgroundColor = "red";
+				}
+				else if(document.getElementById(i).style.backgroundColor == "cornflowerblue"){
+					document.getElementById(i).style.backgroundColor = "blue";
+				}
+				else if(document.getElementById(i).style.backgroundColor == 'saddlebrown'){
+					console.log("testBrown");
+					document.getElementById(i).style.backgroundColor = "tan";
+				}*/
 				i++;
 			}
 			else{
@@ -171,8 +251,7 @@ function showColor(){
 				document.getElementById(i).style.backgroundColor = "red";
 			}
 			else if(blueWords.includes(i)){
-				document.getElementById(i).style.backgroundColor = "blue";
-				document.getElementById(i).style.color = "white";
+				document.getElementById(i).style.backgroundColor = "dodgerblue";
 			}
 			else if(neutralWords.includes(i)){
 				document.getElementById(i).style.backgroundColor = "tan";
@@ -181,8 +260,32 @@ function showColor(){
 				document.getElementById(i).style.backgroundColor = "black";
 				document.getElementById(i).style.color = "white";
 			}
+			/*else{
+				if(document.getElementById(i).style.backgroundColor == "red"){
+					document.getElementById(i).style.backgroundColor = "lightcoral";
+				}
+				else if(document.getElementById(i).style.backgroundColor == "blue"){
+					document.getElementById(i).style.backgroundColor = "cornflowerblue";
+				}
+				else if(document.getElementById(i).style.backgroundColor == "tan"){
+					document.getElementById(i).style.backgroundColor = "saddlebrown";
+				}
+				
+			}*/
 			i++;
 		}
 		colorShown = true;
+	}
+}
+function changeTurn(){
+	if(turnColor == 0){
+		turnColor = 1;
+		document.getElementById("currentTurn").innerHTML = "Current turn: Blue";
+		document.getElementById("currentTurn").style.color = "dodgerblue";
+	}
+	else{
+		turnColor = 0;
+		document.getElementById("currentTurn").innerHTML = "Current turn: Red";
+		document.getElementById("currentTurn").style.color = "red";
 	}
 }
