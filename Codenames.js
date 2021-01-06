@@ -13,6 +13,19 @@ var colorShown = false;
 var words = [];
 var over = false;
 function randomStart(){
+	redWords = [];
+	blueWords = [];
+	neutralWords = [];
+	deathWord = -1;
+	shownWords = [];
+	i=1;
+	currentList = [];
+	gameCode="";
+	align = -1;
+	word = -1;
+	turnColor = -1;
+	words = [];
+	over = false;
 	if(document.getElementById("list").value == "Classic"){
 		currentList = defaultList;
 	}
@@ -40,6 +53,8 @@ function randomStart(){
 	document.getElementById("redTotal").innerHTML = "Red words left: " + redWords.length;
 	document.getElementById("blueTotal").innerHTML = "Blue words left: " + blueWords.length;
 	document.getElementById("neutralTotal").innerHTML = "Neutral words left: " + neutralWords.length;
+	colorShown = true;
+	showColor();
 }
 function getAlign(){
 	var num;
@@ -167,7 +182,6 @@ function takeTurn(b){
 				checkWin();
 				document.getElementById(b).style.backgroundColor = "red";
 				document.getElementById(b).style.color = "white";
-				document.getElementById(b).style.borderStyle = "solid";
 				if(turnColor == 1){
 					changeTurn();
 				}
@@ -178,7 +192,6 @@ function takeTurn(b){
 				checkWin();
 				document.getElementById(b).style.backgroundColor = "dodgerblue";
 				document.getElementById(b).style.color = "white";
-				document.getElementById(b).style.borderStyle = "solid";
 				if(turnColor == 0){
 					changeTurn();
 				}
@@ -188,11 +201,8 @@ function takeTurn(b){
 				neutralWords.splice(neutralWords.indexOf(b), 1);
 				document.getElementById(b).style.backgroundColor = "tan";
 				document.getElementById(b).style.color = "white";
-				document.getElementById(b).style.borderStyle = "solid";
 				changeTurn();
 			}
-		document.getElementById(b).style.fontWeight = "bold";
-		document.getElementById(b).style.fontSize = "15pt";
 		}
 		document.getElementById("redTotal").innerHTML = "Red words left: " + redWords.length;
 		document.getElementById("blueTotal").innerHTML = "Blue words left: " + blueWords.length;
