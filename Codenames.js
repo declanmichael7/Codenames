@@ -37,6 +37,9 @@ function randomStart(){
 		document.getElementById("currentTurn").innerHTML = "Current turn: Blue";
 		document.getElementById("currentTurn").style.color = "dodgerblue";
 	}
+	document.getElementById("redTotal").innerHTML = "Red words left: " + redWords.length;
+	document.getElementById("blueTotal").innerHTML = "Blue words left: " + blueWords.length;
+	document.getElementById("neutralTotal").innerHTML = "Neutral words left: " + neutralWords.length;
 }
 function getAlign(){
 	var num;
@@ -191,6 +194,9 @@ function takeTurn(b){
 		document.getElementById(b).style.fontWeight = "bold";
 		document.getElementById(b).style.fontSize = "15pt";
 		}
+		document.getElementById("redTotal").innerHTML = "Red words left: " + redWords.length;
+		document.getElementById("blueTotal").innerHTML = "Blue words left: " + blueWords.length;
+		document.getElementById("neutralTotal").innerHTML = "Neutral words left: " + neutralWords.length;
 	}
 }
 function getCode(){
@@ -235,32 +241,28 @@ function checkWin(){
 	}
 }
 function gameOver(winner){
-	if(winner == 0){
-		alert("Red Wins!");
-	}
-	else{
-		alert("Blue Wins");
-	}
 	over = true;
 	shownWords = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 	showColor();
+	document.getElementById("redTotal").innerHTML = "Red words left: " + redWords.length;
+	document.getElementById("blueTotal").innerHTML = "Blue words left: " + blueWords.length;
+	document.getElementById("neutralTotal").innerHTML = "Neutral words left: " + neutralWords.length;
+	if(winner == 0){
+		setTimeout(function() {
+			alert("Red Wins!");
+		},10)
+	}
+	else{
+		setTimeout(function() {
+			alert("Blue Wins!");
+		},10)
+	}
 }
 function showColor(){
 	if(colorShown){
 		i=1;
 		while(i<=25){
 			if(shownWords.includes(i)){
-				/*if(document.getElementById(i).style.backgroundColor == 'lightcoral'){
-					console.log("testRed");
-					document.getElementById(i).style.backgroundColor = "red";
-				}
-				else if(document.getElementById(i).style.backgroundColor == "cornflowerblue"){
-					document.getElementById(i).style.backgroundColor = "blue";
-				}
-				else if(document.getElementById(i).style.backgroundColor == 'saddlebrown'){
-					console.log("testBrown");
-					document.getElementById(i).style.backgroundColor = "tan";
-				}*/
 				i++;
 			}
 			else{
@@ -287,18 +289,6 @@ function showColor(){
 				document.getElementById(i).style.backgroundColor = "black";
 				document.getElementById(i).style.color = "white";
 			}
-			/*else{
-				if(document.getElementById(i).style.backgroundColor == "red"){
-					document.getElementById(i).style.backgroundColor = "lightcoral";
-				}
-				else if(document.getElementById(i).style.backgroundColor == "blue"){
-					document.getElementById(i).style.backgroundColor = "cornflowerblue";
-				}
-				else if(document.getElementById(i).style.backgroundColor == "tan"){
-					document.getElementById(i).style.backgroundColor = "saddlebrown";
-				}
-				
-			}*/
 			i++;
 		}
 		colorShown = true;
